@@ -15,35 +15,25 @@
         lName: '',
         email: ''
       };
-      var customers = [
-        {
-          id:'111',
-          fName: 'Derek',
-          lName: 'Doughty',
-          email: 'Derek@csaa.com'
-        },
-        {
-          id:'222',
-          fName: 'Scott',
-          lName: 'Brau',
-          email: 'Scott@csaa.com'
-        },
-        {
-          id:'333',
-          fName: 'Jon',
-          lName: 'Hirsch',
-          email: 'Jon@csaa.com'
-        }
-      ];
-      for(var index = 0; index < customers.length; index++) {
-        if(customers[index].id === custID) {
-          customer = customers[index];
-        }
-      }
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var data = JSON.parse(xhr.responseText);
+          var customers = data.customers;
+          for(var index = 0; index < customers.length; index++) {
+            if(customers[index].id === custID) {
+              customer = customers[index];
+            }
+          }
 
-      document.getElementById('first').innerHTML = customer.fName;
-      document.getElementById('last').innerHTML = customer.lName;
-      document.getElementById('address').innerHTML = customer.email;
+          document.getElementById('first').innerHTML = customer.fName;
+          document.getElementById('last').innerHTML = customer.lName;
+          document.getElementById('address').innerHTML = customer.email;
+        }
+      };
+      xhr.open("GET", "http://jonathanhirsch.github.io/CleanCodersData/data.json", true);
+      xhr.send();
+
     }
 
   </script>
