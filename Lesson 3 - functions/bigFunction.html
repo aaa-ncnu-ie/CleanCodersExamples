@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Customer</title>
+  <script type="text/javascript">
+
+  //This function will search for a customer from a list of customers
+  //and then display captured customer in the DOM
+    function customer() {
+      var custID = document.getElementById('customerID').value;
+      var customer = {
+        id:'',
+        fName: '',
+        lName: '',
+        email: ''
+      };
+      var customers = [
+        {
+          id:'111',
+          fName: 'Derek',
+          lName: 'Doughty',
+          email: 'Derek@csaa.com'
+        },
+        {
+          id:'222',
+          fName: 'Scott',
+          lName: 'Brau',
+          email: 'Scott@csaa.com'
+        },
+        {
+          id:'333',
+          fName: 'Jon',
+          lName: 'Hirsch',
+          email: 'Jon@csaa.com'
+        }
+      ];
+      for(var index = 0; index < customers.length; index++) {
+        if(customers[index].id === custID) {
+          customer = customers[index];
+        }
+      }
+
+      document.getElementById('first').innerHTML = customer.fName;
+      document.getElementById('last').innerHTML = customer.lName;
+      document.getElementById('address').innerHTML = customer.email;
+    }
+
+  </script>
+</head>
+<body>
+  <input id='customerID' type='text'>
+  <button onclick='customer();'>Find Customer</button>
+  <br/>
+  <br/>
+  First Name: <span id='first'></span>
+  <br/>
+  Last Name: <span id='last'></span>
+  <br/>
+  Email: <span id='address'></span>
+</body>
+</html>
